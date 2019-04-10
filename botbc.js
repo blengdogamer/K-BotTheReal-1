@@ -645,7 +645,7 @@ client.on('message', message => {
         .setAuthor(` ${message.author.username} `, message.author.avatarURL)      
         .setTitle(`اضغط هنا لدعوة البوت `)
         .setURL(`https://discordapp.com/oauth2/authorize?client_id=454101494971760642&permissions=8&scope=bot`)
-        .setThumbnail("https://discordapp.com/api/oauth2/authorize?client_id=565522886744604672&permissions=0&scope=bot")        
+        .setThumbnail("https://discordapp.com/api/oauth2/authorize?client_id=565522886744604672&permissions=8&scope=bot")        
      message.channel.sendEmbed(embed);
        }
    });
@@ -657,7 +657,7 @@ client.on('message', message => {
         .setAuthor(` ${message.author.username} `, message.author.avatarURL)      
         .setTitle(`اضغط هنا لدعوة البوت`)
         .setURL(`https://discordapp.com/oauth2/authorize?client_id=454101494971760642&permissions=8&scope=bot`)
-        .setThumbnail("https://discordapp.com/api/oauth2/authorize?client_id=565522886744604672&permissions=0&scope=bot")        
+        .setThumbnail("https://discordapp.com/api/oauth2/authorize?client_id=565522886744604672&permissions=8&scope=bot")        
      message.channel.sendEmbed(embed);
        }
    }); 
