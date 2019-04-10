@@ -256,7 +256,7 @@ return
 }
 channel.bulkDelete(100)
 channel.send(`@here || @everyone
-${msg.guild.name}© :arrow_down:
+:arrow_down::white_check_mark::arrow_down:
  
 ${stringNew}
 `).then( msgA =>{
