@@ -281,7 +281,7 @@ if(member.roles.find(r=>r.name == roleNew.name)) return;
 
 //mentionforbot
 client.on('message', message => {
-    if (message.content.startsWith("<@565268540278439938>"))
+    if (message.content.startsWith("<@565522886744604672>"))
     
     message.reply("My Prefix is : k&");
     
@@ -645,7 +645,7 @@ client.on('message', message => {
         .setAuthor(` ${message.author.username} `, message.author.avatarURL)      
         .setTitle(`اضغط هنا لدعوة البوت `)
         .setURL(`https://discordapp.com/oauth2/authorize?client_id=454101494971760642&permissions=8&scope=bot`)
-        .setThumbnail(" https://cdn.discordapp.com/avatars/377904849783750667/6c76e412f18c142dfd711d05fb363869.png?size=2048")        
+        .setThumbnail("https://discordapp.com/api/oauth2/authorize?client_id=565522886744604672&permissions=0&scope=bot")        
      message.channel.sendEmbed(embed);
        }
    });
@@ -657,7 +657,7 @@ client.on('message', message => {
         .setAuthor(` ${message.author.username} `, message.author.avatarURL)      
         .setTitle(`اضغط هنا لدعوة البوت`)
         .setURL(`https://discordapp.com/oauth2/authorize?client_id=454101494971760642&permissions=8&scope=bot`)
-        .setThumbnail(" https://cdn.discordapp.com/avatars/377904849783750667/6c76e412f18c142dfd711d05fb363869.png?size=2048")        
+        .setThumbnail("https://discordapp.com/api/oauth2/authorize?client_id=565522886744604672&permissions=0&scope=bot")        
      message.channel.sendEmbed(embed);
        }
    }); 
@@ -667,7 +667,7 @@ client.on('message', message => {
   /*سرفرات البوت*/
    
 client.on('message', message => {
-if(message.content == (prefix + "adminbot")) {
+if(message.content == (prefix + "allbot")) {
          if(!message.author.id === '298907908903665665') return;
 var gimg;
 var gname;
@@ -852,4 +852,4 @@ if (message.content.startsWith(adminprefix + 'ava')) {
 
 
 
-client.login("NDU0MTAxNDk0OTcxNzYwNjQy.XKz22Q.ztmmkHIwQO1OKiaBN4s1OVMpzw8");
+client.login(process.env.BOT_TOKEN);
