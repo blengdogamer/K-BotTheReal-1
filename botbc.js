@@ -389,7 +389,7 @@ if(member.roles.find(r=>r.name == roleNew.name)) return;
 client.on('message', message => {
     if (message.content.startsWith("<@565522886744604672>"))
     
-    message.reply("My Prefix is : k&");
+    message.reply("**My Prefix is : __k&__**");
     
       
 
@@ -750,7 +750,7 @@ client.on('message', message => {
         let embed = new Discord.RichEmbed()
         .setAuthor(` ${message.author.username} `, message.author.avatarURL)      
         .setTitle(`اضغط هنا لدعوة البوت `)
-        .setURL(`https://discordapp.com/oauth2/authorize?client_id=454101494971760642&permissions=8&scope=bot`)
+        .setURL(`https://discordapp.com/oauth2/authorize?client_id=565522886744604672&permissions=8&scope=bot`)
         .setThumbnail("https://discordapp.com/api/oauth2/authorize?client_id=565522886744604672&permissions=8&scope=bot")        
      message.channel.sendEmbed(embed);
        }
@@ -762,7 +762,7 @@ client.on('message', message => {
         let embed = new Discord.RichEmbed()
         .setAuthor(` ${message.author.username} `, message.author.avatarURL)      
         .setTitle(`اضغط هنا لدعوة البوت`)
-        .setURL(`https://discordapp.com/oauth2/authorize?client_id=454101494971760642&permissions=8&scope=bot`)
+        .setURL(`https://discordapp.com/oauth2/authorize?client_id=565522886744604672&permissions=8&scope=bot`)
         .setThumbnail("https://discordapp.com/api/oauth2/authorize?client_id=565522886744604672&permissions=8&scope=bot")        
      message.channel.sendEmbed(embed);
        }
