@@ -876,6 +876,10 @@ m.sendMessage(args)
 
 	   k&avatar | للإطلاع على صورتك
 
+          k&rooms | لمعرفة الرومات الموجودة
+
+          k&roles | لمعرفة الرتب الموجودة
+
 ـــــــــــــــــــــــــــــــــــــــــــ	
         الأوامـر الإدآآرية :hammer_pick:
 
@@ -920,6 +924,22 @@ m.sendMessage(args)
    
    }
    });
+
+  
+  client.on("message", message => {
+    if (message.content === "k&help") {
+     const embed = new Discord.RichEmbed() 
+         .setColor("#00FF00")
+         .setThumbnail(message.author.avatarURL)
+         .setDescription(`**
+شكرا لأنك استخدمت البوت ,
+       ** `)
+	   .setFooter('By | iiKaaaix ,')
+   message.author.sendEmbed(embed)
+   
+   }
+   });
+
 //بلاينق
 
 const developers = ["298907908903665665","id"]
