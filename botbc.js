@@ -93,7 +93,7 @@ client.on("message", message => {
     '‏صراحه  |  ما اكثر شي ندمن عليه؟',
     'صراحه  |  ما هي أمنياتك المُستقبلية؟‏',
 ]
-  Rocket.on('message', message => {//saraahaaah
+  client.on('message', message => {//saraahaaah
 if (message.content.startsWith('k&sarahah')) {
     if(!message.channel.guild) return message.reply('** هذا الامر فقط للسيرفرات **');
  var Rocket= new Discord.RichEmbed()
@@ -111,7 +111,7 @@ if (message.content.startsWith('k&sarahah')) {
 
 
   
-  Rocket.on('message', message => {//roles
+  client.on('message', message => {//roles
     if (message.content === "k&roles") {
         var roles = message.guild.roles.map(roles => `${roles.name}, `).join(' ')
         const embed = new Discord.RichEmbed()
@@ -120,7 +120,7 @@ if (message.content.startsWith('k&sarahah')) {
         message.channel.sendEmbed(embed);
     }
 });
-Rocket.on('message', message => {//rooms
+client.on('message', message => {//rooms
     if (message.content === "k&rooms") {
         var channels = message.guild.channels.map(channels => `${channels.name}, `).join(' ')
         const embed = new Discord.RichEmbed()
