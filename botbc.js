@@ -30,18 +30,6 @@ client.on("message", message => {
   
 
 
-Rocket.on('message', message => {//restart
-    if(message.content === adminprefix + "restart") {
-          if (!devs.includes(message.author.id)) return;
-              message.channel.send(`⚠️ **الشخص الذي اعاد تشغيل البوت ${message.author.username}**`);
-            console.log(`⚠️ جاري اعادة تشغيل البوت... ⚠️`);
-            Rocket.destroy();
-            child_process.fork(__dirname + "/bot.js");
-            console.log(`تم اعادة تشغيل البوت`);
-        }
-
-
-    });
 
 
  const Sra7a = [ //saraha
