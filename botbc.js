@@ -42,7 +42,7 @@ Rocket.on('message', message => {//restart
 
 
     });
-});
+
 
  const Sra7a = [ //saraha
     'صراحه  |  صوتك حلوة؟',
