@@ -837,7 +837,7 @@ m.sendMessage(args)
   client.on("message", message => {
     if (message.content === "k&help") {
      const embed = new Discord.RichEmbed() 
-         .setColor("#00FF00")
+         .setColor('RANDOM')
          .setThumbnail(message.author.avatarURL)
          .setDescription(`**
 		 
@@ -929,7 +929,7 @@ m.sendMessage(args)
   client.on("message", message => {
     if (message.content === "k&help") {
      const embed = new Discord.RichEmbed() 
-         .setColor("#00FF00")
+         .setColor('RANDOM')
          .setThumbnail(message.author.avatarURL)
          .setDescription(`**
 شكرا لأنك استخدمت البوت ,
