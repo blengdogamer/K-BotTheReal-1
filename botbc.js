@@ -32,7 +32,7 @@ chid: channelfind.id,
 guild: message.guild.id
  
 }
-channelfind.setName(`- VoiceOnline :[ ${message.guild.members.filter(m => m.voiceChannel).size} ] ,`)
+channelfind.setName(`- VoiceOnline : ${message.guild.members.filter(m => m.voiceChannel).size}`)
 message.channel.send('**تم تشغيل الخاصية " فويس اونلاين " بنجاح**')
 }
     if(message.content.startsWith(prefix + "offvo")) {
