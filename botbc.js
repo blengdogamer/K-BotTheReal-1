@@ -11,6 +11,22 @@ client.on('ready',  () => {
     console.log(`Logged in as * [ " ${client.user.username} " ] Users! [ " ${client.users.size} " ]`);
     console.log(`Logged in as * [ " ${client.user.username} " ] channels! [ " ${client.channels.size} " ]`);
   });
+//skin MC
+
+client.on('message', message => {
+  const aa = message.content.split(" ").slice(1).join(" ");
+  if(message.content.startsWith(prefix + "skin")){
+    if(!aa) return message.reply(`:x:  -  **${prefix}skin <name>**`);
+    var ss = new Discord.RichEmbed()
+    .setTitle(`${aa}'s Skin!`)
+    .setURL(`https://minotar.net/armor/body/${aa}/100.png`)
+    .setThumbnail(`https://minotar.net/avatar/${aa}`)
+    .setImage(`https://minotar.net/armor/body/${aa}/100.png`)
+    .setFooter(`Requested By : ${message.author.tag}`, message.author.avatarURL)
+    message.channel.send(ss);
+  }
+});
+
 
 //bc
 
@@ -480,7 +496,29 @@ message.channel.send("`Error`:" + Julian)
   }
   });
   
- 
+ //kick
+client.on('message', message => {
+if (message.content.startsWith("kick")) {
+    var mention = message.mentions.members.first();
+    if(!mention) return message.channel.send("يجب منشن العضو");
+
+    mention.kick("By: " + message.author.tag);
+    
+    message.channel.send("تم أعطاء كيك الى : " + mention.tag);
+};
+});
+client.on('message', message => {
+if (message.content.startsWith("ban")) {
+    var mention = message.mentions.members.first();
+    if(!mention) return message.channel.send("يجب منشن العضو");
+
+    mention.ban("By: " + message.author.tag);
+    
+    message.channel.send("تم أعطاء باند الى : " + mention.tag);
+};
+});
+
+
   
 /*بنق*/
 
@@ -874,6 +912,8 @@ m.sendMessage(args)
 
        k&ct | لِلعب لعبة كت تويت
 
+        k&skin <user> | يوريك سكن لاعب ماينكرافت
+
 	   k&avatar | للإطلاع على صورتك
 
           k&rooms | لمعرفة الرومات الموجودة
@@ -894,6 +934,8 @@ m.sendMessage(args)
        k&unmute |لفك الميوت 
 
        k&setrole | لأخذ رتبه بالضغط على الرياكشن
+
+       k&kick | لطرد عضو معين
 
        k&ban | لتبنيد شخص معين 
 
