@@ -11,6 +11,8 @@ client.on('ready',  () => {
     console.log(`Logged in as * [ " ${client.user.username} " ] Users! [ " ${client.users.size} " ]`);
     console.log(`Logged in as * [ " ${client.user.username} " ] channels! [ " ${client.channels.size} " ]`);
   });
+
+
 //skin MC
 
 client.on('message', message => {
@@ -500,19 +502,19 @@ message.channel.send("`Error`:" + Julian)
 
 client.on('message',function(message) {
    if(message.content.startsWith(prefix + "guilds")) {
-       message.channel.send(`Guilds: \`\`${client.guilds.size}\`\``);
+       message.channel.send(`**Guilds:__ \`\`${client.guilds.size}\`\`__**`);
    } 
 });
 //========================================================
 client.on('message',function(message) {
    if(message.content.startsWith(prefix + "users")) {
-       message.channel.send(`Users: \`\`${client.users.size}\`\``);
+       message.channel.send(`**Users:__ \`\`${client.users.size}\`\`__**`);
    } 
 });
 //=========================================================
 client.on('message',function(message) {
    if(message.content.startsWith(prefix + "channels")) {
-       message.channel.send(`channels: \`\`${client.channels.size}\`\``);
+       message.channel.send(`**channels:__ \`\`${client.channels.size}\`\`__**`);
    } 
 });
 
@@ -910,6 +912,8 @@ m.sendMessage(args)
        k&ct | لِلعب لعبة كت تويت
 
         k&skin <user> | يوريك سكن لاعب ماينكرافت
+
+         k&users \ k&guilds \ k&channels | يوريك بعض المعلومات عن السيرفر
 
 	   k&avatar | للإطلاع على صورتك
 
