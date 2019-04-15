@@ -12,32 +12,37 @@ client.on('ready',  () => {
     console.log(`Logged in as * [ " ${client.user.username} " ] channels! [ " ${client.channels.size} " ]`);
   });
 
+//wlc
+client.on("guildMemberAdd", member => {
+  client.channels.find('id', '566285979493859359').send(`**Wَelcomِe Tُُo __Vemo__ : [ ${member} ] :rose: :heart:**`)
+});
+
 //voice-online
 
 let vojson = JSON.parse(fs.readFileSync('vojson.json', 'utf8'))
 client.on('message', message => {
-    if(message.content.startsWith(prefix + "setVc")) {
+    if(message.content.startsWith(prefix + "setvo")) {
 let channel = message.content.split(" ").slice(1).join(" ")
 let channelfind = message.guild.channels.find('name', `${channel}`)
-if(!channel) return message.channel.send('Please Type The Voice Channel Name Example: k&setVc <Channel name>')
-if(!channelfind) return message.channel.send('Please Type The Voice Channel Name Example: k&setVc <Channel name>')
+if(!channel) return message.channel.send('المرجو كتابة إسم الروم الصوتي بدون أخطاء مثل: k&setvo <Channel name>')
+if(!channelfind) return message.channel.send('المرجو كتابة إسم الروم الصوتي بدون أخطاء مثل : k&setvo <Channel name>')
 vojson[message.guild.id] = {
 stats: 'enable',
 chid: channelfind.id,
 guild: message.guild.id
  
 }
-channelfind.setName(`VoiceOnline: ${message.guild.members.filter(m => m.voiceChannel).size}`)
-message.channel.send('**Done The Voice Online  Is Turned On**')
+channelfind.setName(`- VoiceOnline :[ ${message.guild.members.filter(m => m.voiceChannel).size} ] ,`)
+message.channel.send('**تم تشغيل الخاصية " فويس اونلاين " بنجاح**')
 }
-    if(message.content.startsWith(prefix + "vc off")) {
+    if(message.content.startsWith(prefix + "offvo")) {
       message.guild.channels.find('id', `${vojson[message.guild.id].chid}`).delete()
     vojson[message.guild.id] = {
         stats: 'disable',
         chid: 'undefined',
         guild: message.guild.id
         }
-        message.channel.send('**Done The Voice Online Is Turned Off**')
+        message.channel.send('**تـم تعطيل خاصية " فويس اونلاين " بنجاح **')
  
 }
 fs.writeFile("./vojson.json", JSON.stringify(vojson), (err) => {
@@ -968,6 +973,8 @@ m.sendMessage(args)
 
 	   k&avatar | للإطلاع على صورتك
 
+          k&sarahah | للعب لعبة صراحه
+
           k&rooms | لمعرفة الرومات الموجودة
 
           k&roles | لمعرفة الرتب الموجودة
@@ -987,10 +994,10 @@ m.sendMessage(args)
 
        k&setrole | لأخذ رتبه بالضغط على الرياكشن
 
-       k&kick | لطرد عضو معين
+       k&setvo \ k&offvo | لتشغيل أو تعطيل خاصية فويس أونلاين
 
        k&ban | لتبنيد شخص معين 
-
+     
        k&color 100 | لإنشاء 100 لون 
 
        k&mutech | لقفل الشات
@@ -1004,8 +1011,8 @@ m.sendMessage(args)
 	 
 ـــــــــــــــــــــــــــــــــــــــــــــــــ
 
- لما تدخل البوت سوي روم wlc و sugs 
- عشان يزبط أمر الإقتراح و الترحيب
+ لما تدخل البوت سوي روم sugs 
+ عشان يزبط أمر الإقتراح
  
  ـــــــــــــــــــــــــــــــــــــــــــ
 
