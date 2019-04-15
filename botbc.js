@@ -496,28 +496,25 @@ message.channel.send("`Error`:" + Julian)
   }
   });
   
- //kick
-client.on('message', message => {
-if (message.content.startsWith("kick")) {
-    var mention = message.mentions.members.first();
-    if(!mention) return message.channel.send("يجب منشن العضو");
+//معلومات
 
-    mention.kick("By: " + message.author.tag);
-    
-    message.channel.send("تم أعطاء كيك الى : " + mention.tag);
-};
+client.on('message',function(message) {
+   if(message.content.startsWith(prefix + "guilds")) {
+       message.channel.send(`Guilds: \`\`${client.guilds.size}\`\``);
+   } 
 });
-client.on('message', message => {
-if (message.content.startsWith("ban")) {
-    var mention = message.mentions.members.first();
-    if(!mention) return message.channel.send("يجب منشن العضو");
-
-    mention.ban("By: " + message.author.tag);
-    
-    message.channel.send("تم أعطاء باند الى : " + mention.tag);
-};
+//========================================================
+client.on('message',function(message) {
+   if(message.content.startsWith(prefix + "users")) {
+       message.channel.send(`Users: \`\`${client.users.size}\`\``);
+   } 
 });
-
+//=========================================================
+client.on('message',function(message) {
+   if(message.content.startsWith(prefix + "channels")) {
+       message.channel.send(`channels: \`\`${client.channels.size}\`\``);
+   } 
+});
 
   
 /*بنق*/
