@@ -230,21 +230,23 @@ if (message.content.startsWith(prefix + 'clear')) {
   });
   
 //لو بوتك دخل او طلع يعطيك معلومات عنه
-client.on('guildCreate', guild => {
-client.channels.get("564799205105991701").send(`✅ **${client.user.tag} دخل سيرفر جديد
-Server name: __${guild.name}__
-Server owner: __${guild.owner}__
-Server id: __${guild.id}__ 
-Server Count: __${guild.memberCount}__**`)
-}); //Codes
-client.on('guildDelete', guild => {
-  client.channels.get("564799205105991701").send(`❎ **${client.user.tag} طلع من سيرفر
-Server name: __${guild.name}__
-Server owner: __${guild.owner}__
-Server id: __${guild.id}__ 
-Server Count: __${guild.memberCount}__**`)
-});
+client.on("guildCreate", guild => {
+    let embed = new Discord.RichEmbed () 
+    .setTitle('Bot Logs')
+    .addField(' **Bot joined to :**[' + `${guild.name}` + ']   **By : **' + `${guild.owner.user.username}` + '')
+    .setFooter('The bot is happy')
+    .setTimestamp()
+    client.channels.get("564799205105991701").send(embed)
+  });
 
+  client.on("guildDelete", guild => {
+  let embed = new Discord.RichEmbed ()
+  .setTitle('Bot Logs')
+  .addField(' **Bot left from :**[' + `${guild.name}` + ']     **By : **' + `${guild.owner.user.username}` +  ' ')
+  .setFooter('The bot is crying')
+  .setTimestamp()
+  client.channels.get("564799205105991701").send(embed)
+});
 //bc online
 
 
