@@ -17,6 +17,17 @@ client.on("guildMemberAdd", member => {
   client.channels.find('id', '566285979493859359').send(`**Wَelcomِe Tُُo __Vemo__ : [ ${member} ] :rose: :heart:**`)
 });
 
+//banliste
+
+  client.on('message', message => {
+     if(message.content.startsWith(prefix +"bans")) {
+        message.guild.fetchBans()
+        .then(bans => message.channel.send(`عدد المبندين **${bans.size}** شخص`))
+  .catch(console.error);
+}
+});
+  
+
 //voice-online
 
 let vojson = JSON.parse(fs.readFileSync('vojson.json', 'utf8'))
@@ -978,6 +989,8 @@ m.sendMessage(args)
           k&rooms | لمعرفة الرومات الموجودة
 
           k&roles | لمعرفة الرتب الموجودة
+
+          k&bans | لرؤية المبندين اللي بالسيرفر
 
 ـــــــــــــــــــــــــــــــــــــــــــ	
         الأوامـر الإدآآرية :hammer_pick:
