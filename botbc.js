@@ -29,34 +29,56 @@ client.on("guildMemberAdd", member => {
 
 //رد تلقائي
 
-         client.on('message', message => {
-            if (message.content === 'هلا') {
-              message.channel.sendFile("**أهلـــين , :heart:**");
-            }
-         });
-
-
-         client.on('message', message => {
-            if (message.content === 'برب') {
-              message.channel.sendFile("**تــيت ، لا تطول من فضلــكـََ :leaves:**");
-            }
-         });
-
-
-         client.on('message', message => {
-            if (message.content === 'باك') {
-              message.channel.sendFile("**ولكم بالحبيب , :dizzy:**");
-            }
-         });
+client.on('message', message => {
+    if (message.content.startsWith("هلا"))
+    
+    message.reply(**أهلـــين , :heart:**");
+    
+      
 
 
 
+});
 
-         client.on('message', message => {
-            if (message.content === 'السلام عليكم') {
-              message.channel.sendFile("**وعليكم السـلآم ورحمــة الله و بركاتـه , :rose:**");
-            }
-         });
+
+client.on('message', message => {
+    if (message.content.startsWith("برب"))
+    
+    message.reply(**تــيت ، لا تطول من فضلــكـََ :leaves:**");
+    
+      
+
+
+
+});
+     
+
+client.on('message', message => {
+    if (message.content.startsWith("باك"))
+    
+    message.reply(**ولكم بالحبيب , :dizzy:**");
+    
+      
+
+
+
+});
+     
+
+client.on('message', message => {
+    if (message.content.startsWith("السلام عليكم"))
+    
+    message.reply(**وعليكم السـلآم ورحمــة الله و بركاتـه , :rose:**");
+    
+      
+
+
+
+});
+
+
+
+
 
 //bcmtawr
 
