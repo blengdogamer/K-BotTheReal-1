@@ -146,6 +146,7 @@ client.on("ready", () => {
             var timespan = cd(thedate, ramadan);
            client.channels.get(voiceChannel).setName(`Reamaining days: [${timespan}]`)
           }, 10000);
+  };
 });
 
 
