@@ -30,7 +30,7 @@ client.on("guildMemberAdd", member => {
 //id
 
  client.on("message", msg => {
-           var prefix = ".";
+           var prefix = "k&";
   if(msg.content.startsWith (prefix + "id")) {
     if(!msg.channel.guild) return msg.reply('**:x: اسف لكن هذا الامر للسيرفرات فقط **');         
       const embed = new Discord.RichEmbed();
@@ -134,7 +134,20 @@ client.on("message", message => {
   });
   
   
+//ramadan
 
+client.on('message',async message => {
+const cd = require("countdown")
+const voiceChannel = '567751200808763394';
+client.on("ready", () => {
+          setInterval(function () {
+            let thedate = new Date().getTime();
+            let ramadan = new Date("May 6, 2019 00:00:00").getTime();
+            var timespan = cd(thedate, ramadan);
+           client.channels.get(voiceChannel).setName(`Reamaining days: [${timespan}]`)
+          }, 10000);
+      }
+});
 
 
 
@@ -1014,6 +1027,8 @@ m.sendMessage(args)
           k&roles | لمعرفة الرتب الموجودة
 
           k&bans | لرؤية المبندين اللي بالسيرفر
+
+          k&id | لمعرفة بعض المعلومات عنك في السيرفر
 
 ـــــــــــــــــــــــــــــــــــــــــــ	
         الأوامـر الإدآآرية :hammer_pick:
