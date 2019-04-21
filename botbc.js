@@ -11,6 +11,21 @@ client.on('ready',  () => {
     console.log(`Logged in as * [ " ${client.user.username} " ] Users! [ " ${client.users.size} " ]`);
     console.log(`Logged in as * [ " ${client.user.username} " ] channels! [ " ${client.channels.size} " ]`);
   });
+//user
+
+client.on('message', message => {
+  if(message.content === prefix + "user"){
+    var embed = new Discord.RichEmbed()
+    .setTitle(message.author.tag, message.author.avatarURL)
+    .addField(`User`, message.author.username)
+    .addField(`Discrim`,`#`+ message.author.discriminator)
+    .addField(`Name Color Role`, message.member.colorRole)
+    .addField(`Game`,message.author.presence.game ||"Idel.")
+    .addField(`Status`,message.author.presence.status)
+    message.channel.send(embed);
+  }
+});
+
 
 //ticket
 client.on("message", (message) => {
@@ -95,7 +110,7 @@ Member Count: __${guild.memberCount}__
 Servers Counter : __${client.guilds.size}__**`)
          .setColor("#f3ae10")
          .addField("New Server!")
-         .setFooter('Zactor BOT' , client.user.avatarURL)
+         .setFooter('! K-Bot , ء' , client.user.avatarURL)
            client.channels.get("564799205105991701").send({embed}); //Sup
 }
  
@@ -112,7 +127,7 @@ Server owner: __${guild.owner}__
 Members Count: __${guild.memberCount}__
 Servers Counter : __${client.guilds.size}__**`)
          .setColor("#f3ae10")
-         .setFooter('Zactor BOT' , client.user.avatarURL)
+         .setFooter('! K-Bot , ء' , client.user.avatarURL)
            client.channels.get("564799205105991701").send({embed});
 }
  
@@ -1003,7 +1018,7 @@ client.on('message', (message) => {
       if(!message.member.hasPermission('BAN_MEMBERS')) return message.reply('هذا الخاصية للإدارة فقط');
         var member= message.mentions.members.first();
         member.ban().then((member) => {
-         message.channel.send(member.displayName + 'تم طرد هذا الشخص من السيرفر');
+         message.channel.send(member.displayName + 'تم تبنيد هذا الشخص من السيرفر');
         }).catch(() => {
             message.channel.send('Error :_:');
         });
@@ -1461,6 +1476,10 @@ m.sendMessage(args)
 
           k&id | لمعرفة بعض المعلومات عنك في السيرفر
 
+         k&user | لرؤية اليوزر
+
+         k&new | لإنشاء تكت او روم تذكرة
+
 ـــــــــــــــــــــــــــــــــــــــــــ	
         الأوامـر الإدآآرية :hammer_pick:
 
@@ -1483,6 +1502,8 @@ m.sendMessage(args)
 
        k&ban | لتبنيد شخص معين 
      
+       k&kick | لطرد شخص معين
+
        k&color 100 | لإنشاء 100 لون 
 
        k&mutech | لقفل الشات
