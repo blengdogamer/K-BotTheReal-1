@@ -752,7 +752,6 @@ client.on('message', message => {
     'صراحه  |  ما هي أجمل سنة عشتها بحياتك؟',
     '‏صراحه  |  ما هو عمرك الحقيقي؟',
     '‏صراحه  |  ما اكثر شي ندمن عليه؟',
-    'صراحه  |  ما هي أمنياتك المُستقبلية؟‏',
 ]
   client.on('message', message => {//saraahaaah
 if (message.content.startsWith('k&sarahah')) {
@@ -982,16 +981,9 @@ client.on('message', message => {
     
       
 
-
-
 });
-
-
-
-
 //membersstatus
- 
- 
+
     client.on('message', message => {
               if (!message.channel.guild) return;
       if(message.content =='k&members')
@@ -1008,7 +1000,6 @@ client.on('message', message => {
       .addField('عدد اعضاء السيرفر',`${message.guild.memberCount}`)
       message.channel.send(IzRo);
     });
- 
 
 //ban
 
@@ -1025,9 +1016,6 @@ client.on('message', (message) => {
     }
 });
  
-
-
-
 //قرعة من 1 إلى 100
  
 client.on('message', message => {
@@ -1036,7 +1024,6 @@ client.on('message', message => {
     }
 });
  
-
 //embed
 client.on("message", message => {
   var prefix = "k&";
@@ -1077,7 +1064,6 @@ client.on('message',function(message) {
    } 
 });
 
-  
 /*بنق*/
 
 client.on('message', message => {
@@ -1096,9 +1082,7 @@ client.on('message', message => {
                         }
  });
 
- 
 /*معلونات البوت*/
- 
 
 client.on('message', message => {
     if (message.content.startsWith("k&bot")) {
@@ -1354,8 +1338,6 @@ client.on('message', message => {
        }
    }); 
   
-  
-  
   /*سرفرات البوت*/
    
 client.on('message', message => {
@@ -1532,7 +1514,6 @@ m.sendMessage(args)
    }
    });
 
-  
   client.on("message", message => {
     if (message.content === "k&help") {
      const embed = new Discord.RichEmbed() 
@@ -1582,7 +1563,5 @@ if (message.content.startsWith(adminprefix + 'ava')) {
     message.channel.send(`Changing The Avatar To :**${argresult}** `);
 }
 });
-
-
 
 client.login(process.env.BOT_TOKEN);
