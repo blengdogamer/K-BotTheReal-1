@@ -14,6 +14,7 @@ client.on('ready',  () => {
   });
 //user
 
+const prefix = "k&"
 client.on('message', message => {
   if(message.content === prefix + "user"){
     var embed = new Discord.RichEmbed()
