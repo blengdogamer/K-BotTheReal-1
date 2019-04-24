@@ -14,7 +14,7 @@ client.on('ready',  () => {
   });
 //user
 
-const prefix = "k&"
+
 client.on('message', message => {
   if(message.content === prefix + "user"){
     var embed = new Discord.RichEmbed()
@@ -29,7 +29,9 @@ client.on('message', message => {
 });
 
 //k&role
-bot.on('message', msg => {
+
+const prefix = "k&"
+client.on('message', msg => {
   if(msg.author.bot) return
   if(msg.content.startsWith(prefix + 'role')) {
   let params = msg.content.slice(prefix.length).trim().split(/ +/g);
@@ -80,6 +82,7 @@ if(m.roles.some(r => r.id == role.id)) return
  
  
 })
+
 //ticket
 client.on("message", (message) => {
    if (message.content.startsWith("k&new")) {     
