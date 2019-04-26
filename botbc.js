@@ -12,6 +12,23 @@ client.on('ready',  () => {
     console.log(`Logged in as * [ " ${client.user.username} " ] Users! [ " ${client.users.size} " ]`);
     console.log(`Logged in as * [ " ${client.user.username} " ] channels! [ " ${client.channels.size} " ]`);
   });
+
+
+//contact
+
+client.on("message", message => {
+if(message.content.startsWith(prefix + `contact`)){
+if(message.author.bot || message.channel.type == 'dm') return;
+let args = message.content.split(" ").slice(1);
+let msg = args.join(' ');
+let dev = client.users.get("298907908903665665"); //Your id
+if(!args) return message.reply("**__يجب كتابة الرسالة__**");
+dev.send(`• | User: **${message.author.tag}**\n\n• | Message: **${msg}**`).then(() =>{
+message.channel.send(`** تــم إرسآآل رسالتك بنجاح :white_check_mark: `)
+}).catch(console.error);
+}
+});
+
 //user
 
 
@@ -1561,6 +1578,8 @@ k&unmutech | لفتح الشات
 
 **
 k&invite / k&inv | لدعوة البوت :envelope_with_arrow: 
+
+k&contact | لمراسلة صاحب البوت و الإستفسار له
 **
 
 ـــــــــــــــــــــــــــــــــــــــــــــــــ
