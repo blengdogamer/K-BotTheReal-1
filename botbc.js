@@ -29,6 +29,21 @@ message.channel.send(`** تــم إرسآآل رسالتك بنجاح :white_ch
 }
 });
 
+
+//roleuserbot
+
+client.on('guildCreate', guild => {
+  let support = client.guilds.get('555764045530136597') // حط هنا ايدي سيرفر السبورت
+  if(support === undefined) return
+  let role = support.roles.find(r => r.name == '- UserBot.') // بدلها بأسم الرتبة يلي تبيها للمستخدمين
+  let member = support.members.get(guild.owner.user.id) 
+  if(member) {
+    member.addRole(role)
+  } else {
+    console.log(`هذا العضو ليس من المضيفين البوت لسيرفره.`)
+  }
+})
+
 //user
 
 
