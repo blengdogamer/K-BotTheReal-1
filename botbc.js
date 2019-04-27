@@ -201,18 +201,41 @@ var aoasm =[
 
 //contact
 
-client.on("message", message => {
-if(message.content.startsWith(prefix + `contact`)){
-if(message.author.bot || message.channel.type == 'dm') return;
-let args = message.content.split(" ").slice(1);
-let msg = args.join('');
-let dev = client.users.get("298907908903665665"); //Your id
-if(!args) return message.reply("**__يجب كتابة الرسالة__**");
-dev.send(`• | User: **${message.author.tag}**\n\n• | Message: **${msg}**`).then(() =>{
-message.channel.send(`** تــم إرسآآل رسالتك بنجاح :white_check_mark: **`)
-}).catch(console.error);
+client.on('message' , message => {
+var prefix = "-"
+
+if (message.author.bot) return;
+if (message.content.startsWith(prefix + "contact")) {
+if (!message.channel.guild) return;
+
+
+
+let args = message.content.split(" ").slice(1).join(" ");
+
+
+
+client.users.get("396958215377780747").send(
+    "\n" + "**" + "● السيرفر :" + "**" +
+    "\n" + "**" + "» " + message.guild.name + "**" +
+    "\n" + "**" + " ● المرسل : " + "**" +
+    "\n" + "**" + "» " + message.author.tag + "**" +
+    "\n" + "**" + " ● الرسالة : " + "**" +
+    "\n" + "**" + args + "**")
+
+let embed = new Discord.RichEmbed()
+     .setAuthor(message.author.username, message.author.avatarURL)
+     .setDescription(':mailbox_with_mail: تم ارسال الرسالة الى صاحب البوت بنجاح')
+     .setThumbnail(message.author.avatarURL)
+     .setFooter(".K-Bot ")
+                                                
+
+message.channel.send(embed);
+
+
 }
+    
 });
+
 
 
 //roleuserbot
