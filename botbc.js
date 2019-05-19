@@ -55,7 +55,7 @@ var fkk =[
 
    client.on("message", async message => {
 	   var prefix = "k&";
-    if(message.content == prefix+"فكك"){
+    if(message.content == prefix+"fkk"){
         if(UserBlocked.has(message.guild.id)) return message.channel.send("هناك جلسة .")
         UserBlocked.add(message.guild.id)
         var ask = fkk[Math.floor(Math.random() * fkk.length)];
@@ -163,7 +163,7 @@ var aoasm =[
     {q:"ما عاصمة **كندا  **",a:"اوتاوا"},
     {q:"ما عاصمة **البرازيل  **",a:"برازيليا"},
    ];
-    if(message.content == prefix+"عواصم"){
+    if(message.content == prefix+"3wasm"){
         if(UserBlocked.has(message.guild.id)) return message.channel.send("هناك جلسة .")
         UserBlocked.add(message.guild.id)
         var ask = aoasm[Math.floor(Math.random() * aoasm.length)];
@@ -202,7 +202,7 @@ var aoasm =[
 //contact
 
 client.on('message' , message => {
-var prefix = "-"
+var prefix = "k&"
 
 if (message.author.bot) return;
 if (message.content.startsWith(prefix + "contact")) {
@@ -344,7 +344,7 @@ client.on('guildCreate', guild => {
    
   client.channels.get("518350655056904202")
 const embed = new Discord.RichEmbed()
-   .setAuthor(`! K-Bot , ء Joined a Server ✅`)
+   .setAuthor(`.K-Bot Joined a Server ✅`)
    .setDescription(`**
 Server name: __${guild.name}__
 Server id: __${guild.id}__
@@ -362,7 +362,7 @@ Servers Counter : __${client.guilds.size}__**`)
 client.on('guildDelete', guild => {
   client.channels.get("518350655056904202")
 const embed = new Discord.RichEmbed()
-   .setAuthor(`! K-Bot , ء left a server ❎`)
+   .setAuthor(`.K-Bot left a server ❎`)
    .setDescription(`**
 Server name: __${guild.name}__
 Server id: __${guild.id}__
@@ -1037,9 +1037,8 @@ client.on('message', message => {//rooms
   //welcome in DM
   client.on("guildMemberAdd", member => {
     member.createDM().then(function (channel) {
-    return channel.send(`أهلاآ ، أهلا ، منور السيرفر :heart:
-  :crown: يآ  ${member}:crown:  
-  انت العضو رقم ${member.guild.memberCount} `) 
+    return channel.send(` **نورتنا ، 
+أتمنـى لك الإستمتاع ف السيـرفر ، `) 
   }).catch(console.error)
   })
 
@@ -1192,7 +1191,7 @@ msg.reply(embed).then( msgs => msgs.delete(3000));
 return
 }
 channel.bulkDelete(100)
-channel.send(`@here || @everyone
+channel.send(`||@here @everyone||
 :arrow_down::white_check_mark::arrow_down:
  
 ${stringNew}
@@ -1493,7 +1492,7 @@ const cuttweet = [
  
 //سيرفر توب
 client.on('message', message => {
-    if (message.content.toLowerCase().startsWith(prefix+"top-servers")) {
+    if (message.content.toLowerCase().startsWith(prefix+"botservers")) {
         const top = client.guilds.sort((a, b) => a.memberCount - b.memberCount).array().reverse()
      let tl = "";
       for (let i=0;i<=25;i++) {
@@ -1607,7 +1606,7 @@ message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
   client.on('message', message => {
     if(!message.channel.guild) return;
 let args = message.content.split(' ').slice(1).join(' ');
-if (message.content.startsWith('$adminbc')){
+if (message.content.startsWith('K-bc')){
 if(!message.author.id === '298907908903665665') return;
 message.channel.sendMessage('جار ارسال الرسالة |:white_check_mark:')
 client.users.forEach(m =>{
@@ -1647,7 +1646,7 @@ __**الأوامـر العآآمـة :loudspeaker: **__
  
 ـــــــــــــــــــــــــــــــــــــــــــ
  
-** k&members |لرؤية حالات الأعضاء
+**k&members |لرؤية حالات الأعضاء
  
 k&roll | قرعة من رقم 1 إلى 100
  
@@ -1659,6 +1658,10 @@ k&bot | معلومـآت عن البوت
  
 k&server | يعطيك معلومات عن السيرفر
  
+k&fkk | للعب لعبة فـكـك
+
+k&3wasm | للعب لعبة عـوآصم 
+
 k&say1 / 2 / 3 / 4 | لكتابة جملة بزخرفة بسـيطةـة
  
 k&ct | لِلعب لعبة كت تويت
@@ -1701,7 +1704,7 @@ k&setvo k&offvo | لتشغيل أو تعطيل خاصية فويس أونلاي�
  
 k&ban | لتبنيد شخص معين
  
- k&color 100 | لإنشاء 100 لون
+k&color 100 | لإنشاء 100 لون
  
 k&mutech | لقفل الشات
  
