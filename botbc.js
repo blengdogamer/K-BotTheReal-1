@@ -241,7 +241,7 @@ message.channel.send(embed);
 //roleuserbot
 
 client.on('guildCreate', guild => {
-  let support = client.guilds.get('555764045530136597') // حط هنا ايدي سيرفر السبورت
+  let support = client.guilds.get('579476178755125261') // حط هنا ايدي سيرفر السبورت
   if(support === undefined) return
   let role = support.roles.find(r => r.name == '- UserBot.') // بدلها بأسم الرتبة يلي تبيها للمستخدمين
   let member = support.members.get(guild.owner.user.id) 
@@ -268,60 +268,7 @@ client.on('message', message => {
   }
 });
 
-//k&role
 
-
-client.on('message', msg => {
-  if(msg.author.bot) return
-  if(msg.content.startsWith(prefix + 'role')) {
-  let params = msg.content.slice(prefix.length).trim().split(/ +/g);
-  if(!params[0]) return msg.channel.send(`**syntax: ${prefix}role <all/humans/bots/@user> <name role/@role>`);
-if(params[0] === 'all') {
- if(!params[1]) return msg.channel.send(`**منشن الرتبة او اكتب اسمها \n syntax: ${prefix}role all <@role / name role>**`)
-     let role = msg.mentions.roles.first() || msg.guild.roles.find(r =>  r.name.toLowerCase().startsWith(params[1].toLowerCase()))
-   if(!role) return msg.channel.send(`**لم استطع ايجاد هذه الرتبة**`)
- msg.guild.members.forEach(m => {
-if(m.roles.some(r => r.id == role.id)) return
-     m.addRole(role)
- })
- msg.channel.send(`**تم إعطاك الكل رتبة e @${role.name}**`);
-} else if(params[0] === 'bots') {
- if(!params[1]) return msg.channel.send(`**منشن الرتبة او اكتب اسمها \n syntax: ${prefix}role bots <@role / name role>**`)
-     let role = msg.mentions.roles.first() || msg.guild.roles.find(r =>  r.name.toLowerCase().startsWith(params[1].toLowerCase()))
-   if(!role) return msg.channel.send(`**لم استطع ايجاد هذه الرتبة**`)
- let bots = msg.guild.members.filter(m => m.user.bot)
- bots.forEach(bot => {
-   if(bot.roles.some(r => r.id == role.id)) return
-   bot.addRole(role)
- })
- msg.channel.send(`**تم ، إعطاك كل البوتات رتبة  @${role.name}**`);
-} else if(params[0] === 'humans') {
- if(!params[1]) return msg.channel.send(`**منشن الرتبة او اكتب اسمها \n syntax: ${prefix}role humans <@role / name role>**`)
-     let role = msg.mentions.roles.first() || msg.guild.roles.find(r =>  r.name.toLowerCase().startsWith(params[1].toLowerCase()))
-   if(!role) return msg.channel.send(`**لم استطع ايجاد هذه الرتبة**`)
-   let humans = msg.guild.members.filter(m => !m.user.bot)
-   humans.forEach(h => {
-     if(h.roles.some(r => r.id == role.id)) return
-     h.addRole(role)
-   })
-   msg.channel.send(`**تـم ، لقد تم إعطاء الأعضاء  @${role.name}**`);
-}else {
-     if(!params[1]) return msg.channel.send(`**منشن الرتبة او اكتب اسمها \n syntax: ${prefix}role @user <@role / name role>**`)
-     let role = msg.mentions.roles.first() || msg.guild.roles.find(r =>  r.name.toLowerCase().startsWith(params[1].toLowerCase()))
-     if(!role) return msg.channel.send(`**لم استطع ايجاد هذه الرتبة**`)
-     let userID = params[0].slice(2 , -1)
-     let user = msg.guild.members.get(userID)
-     if(!user) return
-     user.addRole(role)
-     msg.channel.send(`**تـم إعطآء  ${user} @${role.name}**`)
- 
-   }
- 
- 
- }
- 
- 
-})
 
 //ticket
 client.on("message", (message) => {
@@ -1090,8 +1037,8 @@ client.on('message', message => {//rooms
   //welcome in DM
   client.on("guildMemberAdd", member => {
     member.createDM().then(function (channel) {
-    return channel.send(`:rose:  ولكم نورت السيرفر ي حلو ,:rose: 
-  :crown:اسم العضو  ${member}:crown:  
+    return channel.send(`أهلاآ ، أهلا ، منور السيرفر :heart:
+  :crown: يآ  ${member}:crown:  
   انت العضو رقم ${member.guild.memberCount} `) 
   }).catch(console.error)
   })
@@ -1126,7 +1073,7 @@ if (message.content.startsWith(prefix + 'clear')) {
     if (args > 99) return message.reply("**🛑 || يجب ان يكون عدد المسح أقل من 500 .**").then(messages => messages.delete(5000))
     if(!messagecount) args = '500';
     message.channel.fetchMessages({limit: messagecount + 1}).then(messages => message.channel.bulkDelete(messages));
-    message.channel.send(`\`${args}\` : __عدد الرسائل التي تم مسحها __ `).then(messages => messages.delete(5000));
+    message.channel.send(`\`${args}\` **: __عدد الرسائل التي تم مسحها __** `).then(messages => messages.delete(5000));
   }
   });
   
@@ -1456,27 +1403,8 @@ client.on('message', message=>{
             }
     }
 });  
-  //اقتراح
-     client.on('message', message =>{
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
-    let prefix = 'k&';
 
-if(cmd === `${prefix}sug`) {
-    var suggestMessage = message.content.substring(8)
-    let suggestEMBED = new Discord.RichEmbed()
-    .setColor(3447003)
-    .setTitle("تم إضافة إقتراح جديد !")
-    .setDescription(`**${suggestMessage}**`)
-    .setFooter(`Suggested By : ${message.author.tag}`);
-    message.delete().catch(O_o=>{}) 
-    let suggests = message.guild.channels.find(`name`, "sugs");
-    if (!suggests) return message.channel.send("لازم تسوي روم بإسم sugs")
-    suggests.send(suggestEMBED);
-}
 
-});
 
 //say
 client.on('message',function(message) {
@@ -1704,7 +1632,7 @@ client.on('message', message => {
 message.author.send(`
  
  
-** :notepad_spiral:  البوت لا يزال قيد التعديل**
+** :notepad_spiral:  البوت متكاامل **
  
 ╭╮╭━╮╱╱╱╱╭━━╮╱╱╱╭╮
 ┃┃┃╭╯╱╱╱╱┃╭╮┃╱╱╭╯╰╮
@@ -1730,8 +1658,6 @@ k&ping | لمعرفة بنقك و بنق البوت
 k&bot | معلومـآت عن البوت
  
 k&server | يعطيك معلومات عن السيرفر
- 
-k&sug | لكتآبة إقتراح في سيرفر ما
  
 k&say1 / 2 / 3 / 4 | لكتابة جملة بزخرفة بسـيطةـة
  
@@ -1782,15 +1708,18 @@ k&mutech | لقفل الشات
 k&unmutech | لفتح الشات
  
  
+ـــــــــــــــــــــــــــــــــــــــــــــــــ
+
  
 k&invite / k&inv | لدعوة البوت :envelope_with_arrow:
-**
+
  
 ـــــــــــــــــــــــــــــــــــــــــــــــــ
  
-**لما تدخل البوت سوي روم sugs
-عشان يزبط أمر الإقتراح**
- 
+ k&contact | لمراسلة صاحب البوت ,
+
+ـــــــــــــــــــــــــــــــــــــــــــــــــ
+**
  
  
 `)
