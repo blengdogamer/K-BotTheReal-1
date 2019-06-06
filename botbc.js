@@ -501,7 +501,6 @@ client.on('message', message=>{
 
 
 
-});
 
 //سيرفر توب
 client.on('message', message => {
