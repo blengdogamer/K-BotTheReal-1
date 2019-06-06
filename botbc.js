@@ -34,21 +34,6 @@ client.on('guildCreate', guild => {
   }
 })
 
-//user
-
-
-client.on('message', message => {
-  if(message.content === prefix + "user"){
-    var embed = new Discord.RichEmbed()
-    .setTitle(message.author.tag, message.author.avatarURL)
-    .addField(`User`, message.author.username)
-    .addField(`Discrim`,`#`+ message.author.discriminator)
-    .addField(`Name Color Role`, message.member.colorRole)
-    .addField(`Game`,message.author.presence.game ||"Idel.")
-    .addField(`Status`,message.author.presence.status)
-    message.channel.send(embed);
-  }
-});
 
 
 
@@ -186,26 +171,15 @@ client.on('message', message => {
   .setAuthor(`KICKED!`, user.displayAvatarURL)
   .setColor("RANDOM")
   .setTimestamp()
-  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
-  .addField("**Kicked By:**", '**[ ' + `${message.author.tag}` + ' ]**')
-  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
+  .addField("**العضو :**",  '**[ ' + `${user.tag}` + ' ]**')
+  .addField("**تم الطرد من قبل :**", '**[ ' + `${message.author.tag}` + ' ]**')
+  .addField("**السبب:**", '**[ ' + `${reason}` + ' ]**')
   message.channel.send({
     embed : kickembed
   })
 }
 });
 
-
-
-//banliste
-
-  client.on('message', message => {
-     if(message.content.startsWith(prefix +"bans")) {
-        message.guild.fetchBans()
-        .then(bans => message.channel.send(`عدد المبندين **${bans.size}** شخص`))
-  .catch(console.error);
-}
-});
 
 //bcmtawr
 
@@ -219,17 +193,17 @@ if(message.channel.type === 'dm') return;
  .setTitle(`${client.user.username}`)
  .setDescription(`
  -=-=-=-=-=-=-=-=-=-=
- 🎖 Broadcast sends to a specific role without embed
+ 🎖 برودكاست إلى رتبة محدد بدون إمبد
  
- 🏅 Broadcast sends to a specific role with embed
+ 🏅 برودكاست إلى رتبة محدد بالإمبد
  
- 📭 Broadcast sends for all members with embed
+ 📭 برودكاست إلى جميع الأعضاء بالإمبد
  
- 📧 Broadcast sends for all members without embed
+ 📧 برودكاست إلى جميع الأعضاء بدون إمبد
  
- 🔵 Broadcast sends for online members only without embed
+ 🔵 برودكاست إلى الأونلاين بدون إمبد
  
- 🔷 Broadcast sends for online members only with embed
+ 🔷 برودكاست إلى الأنلاين بالإمبد
  
  ❌ To Cancel the process
  -=-=-=-=-=-=-=-=-=-=
@@ -276,7 +250,7 @@ if(message.channel.type === 'dm') return;
  embedonlineonly.on('collect', r => {
  
     let msge;
-    message.channel.send(':pencil: **| Please Write Now The Message To Send :pencil2: **').then(msg => {
+    message.channel.send(':pencil: **| قم بكتابة نص الرسالة رجاءً :pencil2: **').then(msg => {
    
            message.channel.awaitMessages(filter, {
              max: 1,
@@ -286,7 +260,7 @@ if(message.channel.type === 'dm') return;
            .then(collected => {
                collected.first().delete();
                msge = collected.first().content;
-               msg.edit('✅ **| Do You Want A Mention In The Msg ? [yes OR no] **').then(msg => {
+               msg.edit('✅ **| هل أنت متأكد من إرسال هذه الرساله ؟ [yes OR no] **').then(msg => {
                  message.channel.awaitMessages(filter, {
                    max: 1,
                    time: 90000,
@@ -294,7 +268,7 @@ if(message.channel.type === 'dm') return;
                  })
                  .then(collected => {
                    if(collected.first().content === 'yes') {
-   message.channel.send(`**:white_check_mark: The Message Has Been Sent The Members :loudspeaker:**`);
+   message.channel.send(`**:white_check_mark: تم إرسال رسآلتك بنجاح :loudspeaker:**`);
    
    
    message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
@@ -312,7 +286,7 @@ if(message.channel.type === 'dm') return;
        })
    }})
    if(collected.first().content === 'no') {
-   message.channel.send(`**:white_check_mark: The Message Has Been Sent The Members :loudspeaker:**`);
+   message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجآح :loudspeaker:**`);
    message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
     var bc = new Discord.RichEmbed()
            .setColor('RANDOM')
@@ -335,7 +309,7 @@ if(message.channel.type === 'dm') return;
        
  onlineonly.on('collect', r => {
     let msge;
-    message.channel.send(':pencil: **| Please Write Now The Message To Send :pencil2: **').then(msg => {
+    message.channel.send(':pencil: **| قم بكتابة نص الرسالة رجاءً :pencil2: **').then(msg => {
  
         message.channel.awaitMessages(filter, {
           max: 1,
@@ -345,7 +319,7 @@ if(message.channel.type === 'dm') return;
         .then(collected => {
             collected.first().delete();
             msge = collected.first().content;
-            msg.edit('✅ **| Do You Want A Mention In The Msg ? [yes OR no] **').then(msg => {
+            msg.edit('✅ **| هل أنت متأكد من إرالة البرودكاست؟ [yes OR no] **').then(msg => {
               message.channel.awaitMessages(filter, {
                 max: 1,
                 time: 90000,
@@ -354,7 +328,7 @@ if(message.channel.type === 'dm') return;
               .then(collected => {
  
                 if(collected.first().content === 'yes') {
-message.channel.send(`**:white_check_mark: The Message Has Been Sent The Members :loudspeaker:**`);
+message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
                
  
 message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
@@ -364,7 +338,7 @@ m.send(`${m}`)
     })
 }
 if(collected.first().content === 'no') {
-message.channel.send(`**:white_check_mark: The Message Has Been Sent The Members :loudspeaker:**`);
+message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
 message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
     m.send(`${msge}`)
                
@@ -377,7 +351,7 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
  
  embedmsg.on('collect', r => {
      let msge;
-  message.channel.send(':pencil: **| Please Write Now The Message To Send :pencil2: **').then(msg => {
+  message.channel.send(':pencil: **| قم بكتابة نص االرسالة رجاءً :pencil2: **').then(msg => {
  
          message.channel.awaitMessages(filter, {
            max: 1,
@@ -387,7 +361,7 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
          .then(collected => {
              collected.first().delete();
              msge = collected.first().content;
-             msg.edit('✅ **| Do You Want A Mention In The Msg ? [yes OR no] **').then(msg => {
+             msg.edit('✅ **| هل انت متأكد من إرسآل الرسالة ؟ [yes OR no] **').then(msg => {
                message.channel.awaitMessages(filter, {
                  max: 1,
                  time: 90000,
@@ -395,7 +369,7 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
                })
                .then(collected => {
                  if(collected.first().content === 'yes') {
- message.channel.send(`**:white_check_mark: The Message Has Been Sent The Members :loudspeaker:**`);
+ message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
  
  
      message.guild.members.forEach(m => {
@@ -413,7 +387,7 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
      })
  }})
  if(collected.first().content === 'no') {
- message.channel.send(`**:white_check_mark: The Message Has Been Sent The Members :loudspeaker:**`);
+ message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
      message.guild.members.forEach(m => {
          var bc = new Discord.RichEmbed()
          .setColor('RANDOM')
@@ -440,7 +414,7 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
  
  normalmsg.on('collect', r => {
      let msge;
-     message.channel.send(':pencil: **| Please Write Now The Message To Send :pencil2: **').then(msg => {
+     message.channel.send(':pencil: **| قم بكتابة نص الرسالة رجاءً :pencil2: **').then(msg => {
  
          message.channel.awaitMessages(filter, {
            max: 1,
@@ -450,7 +424,7 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
          .then(collected => {
              collected.first().delete();
              msge = collected.first().content;
-             msg.edit('✅ **| Do You Want A Mention In The Msg ? [yes OR no] **').then(msg => {
+             msg.edit('✅ **| هل أنت متأكد من إرسال الرسالة؟  [yes OR no] **').then(msg => {
                message.channel.awaitMessages(filter, {
                  max: 1,
                  time: 90000,
@@ -459,7 +433,7 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
                .then(collected => {
  
                  if(collected.first().content === 'yes') {
- message.channel.send(`**:white_check_mark: The Message Has Been Sent The Members :loudspeaker:**`);
+ message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
                  
  
      message.guild.members.forEach(m => {
@@ -469,7 +443,7 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
      })
  }
  if(collected.first().content === 'no') {
- message.channel.send(`**:white_check_mark: The Message Has Been Sent The Members :loudspeaker:**`);
+ message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
      message.guild.members.forEach(m => {
          m.send(`${msge}`)
                  
@@ -483,7 +457,7 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
  onlyrole.on('collect', r => {
      let msge;
      let role;
-     message.channel.send(':pencil: **| Please Write Now The Message To Send :pencil2: **').then(msg => {
+     message.channel.send(':pencil: **| قم بكتابة نص الرسالة رجاءً :pencil2: **').then(msg => {
  
          message.channel.awaitMessages(filter, {
            max: 1,
@@ -494,7 +468,7 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
          .then(collected => {
              collected.first().delete();
              msge = collected.first().content;
-                 msg.edit('✅ **| Now Please Write The Role Name**').then(msg => {
+                 msg.edit('✅ **| قم بمنشنة الرتبة**').then(msg => {
                  message.channel.awaitMessages(filter, {
                      max: 1,
                      time: 90000,
@@ -505,7 +479,7 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
              collected.first().delete();
              role = collected.first().content;
                  let rolecheak = message.guild.roles.find('name', `${role}`)
-             msg.edit('✅ **| Do You Want A Mention In The Msg ? [yes OR no] **').then(msg => {
+             msg.edit('✅ **| هل أنت متأكد من إرسالة الرسالة ؟ [yes OR no] **').then(msg => {
                message.channel.awaitMessages(filter, {
                  max: 1,
                  time: 90000,
@@ -514,7 +488,7 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
                .then(collected => {
  
                  if(collected.first().content === 'yes') {
- message.channel.send(`**:white_check_mark: The Message Has Been Sent The Members :loudspeaker:**`);
+ message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
                  
  
              message.guild.members.filter(m => m.roles.get(rolecheak.id)).forEach(m => {
@@ -525,7 +499,7 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
      })
  }
  if(collected.first().content === 'no') {
- message.channel.send(`**:white_check_mark: The Message Has Been Sent The Members :loudspeaker:**`);
+ message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
          message.guild.members.filter(m => m.roles.get(rolecheak.id)).forEach(m => {
  
          m.send(`${msge}`)
@@ -544,7 +518,7 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
  embedonlyrole.on('collect', r => {
      let msge;
      let role;
-     message.channel.send(':pencil: **| Please Write Now The Message To Send :pencil2: **').then(msg => {
+     message.channel.send(':pencil: **| قم بكتابة نص الرسالة رجاءً :pencil2: **').then(msg => {
  
          message.channel.awaitMessages(filter, {
            max: 1,
@@ -555,7 +529,7 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
          .then(collected => {
              collected.first().delete();
              msge = collected.first().content;
-                 msg.edit('✅ **| Now Please Write The Role Name**').then(msg => {
+                 msg.edit('✅ **| قم بمنشنة الرتبة**').then(msg => {
                  message.channel.awaitMessages(filter, {
                      max: 1,
                      time: 90000,
@@ -566,7 +540,7 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
              collected.first().delete();
              role = collected.first().content;
                  let rolecheak = message.guild.roles.find('name', `${role}`)
-             msg.edit('✅ **| Do You Want A Mention In The Msg ? [yes OR no] **').then(msg => {
+             msg.edit('✅ **| هل أنت متأكد من إرسال الرسآلة ؟ [yes OR no] **').then(msg => {
                message.channel.awaitMessages(filter, {
                  max: 1,
                  time: 90000,
@@ -575,7 +549,7 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
                .then(collected => {
  
                  if(collected.first().content === 'yes') {
- message.channel.send(`**:white_check_mark: The Message Has Been Sent The Members :loudspeaker:**`);
+ message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
                  
  
                      message.guild.members.filter(m => m.roles.get(rolecheak.id)).forEach(m => {
@@ -593,7 +567,7 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
      })
  }
  if(collected.first().content === 'no') {
- message.channel.send(`**:white_check_mark: The Message Has Been Sent The Members :loudspeaker:**`);
+ message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
  message.guild.members.filter(m => m.roles.get(rolecheak.id)).forEach(m => {
          var bc = new Discord.RichEmbed()
          .setColor('RANDOM')
@@ -616,7 +590,7 @@ message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
  })
      cancel.on('collect', r => {
          let cancelembed = new Discord.RichEmbed()
-         .setTitle('Successfully Canceled :x:')
+         .setTitle('تـم الإلغآء :x:')
       message.channel.sendEmbed(cancelembed)
          embedmsg.stop();
          normalmsg.stop();
@@ -667,7 +641,7 @@ chid: channelfind.id,
 guild: message.guild.id
  
 }
-channelfind.setName(`VoiceOnline: ${message.guild.members.filter(m => m.voiceChannel).size}`)
+channelfind.setName(`Voice Online : ${message.guild.members.filter(m => m.voiceChannel).size}`)
 message.channel.send('**تم تشغيل الخاصية " فويس اونلاين " بنجاح**')
 }
     if(message.content.startsWith(prefix + "offvo")) {
@@ -701,52 +675,6 @@ client.on('voiceStateUpdate', (oldMember , newMember) => {
                     return;
                     }
         });
-
-//skin MC
-
-client.on('message', message => {
-  const aa = message.content.split(" ").slice(1).join(" ");
-  if(message.content.startsWith(prefix + "skin")){
-    if(!aa) return message.reply(`:x:  -  **${prefix}skin <name>**`);
-    var ss = new Discord.RichEmbed()
-    .setTitle(`${aa}'s Skin!`)
-    .setURL(`https://minotar.net/armor/body/${aa}/100.png`)
-    .setThumbnail(`https://minotar.net/avatar/${aa}`)
-    .setImage(`https://minotar.net/armor/body/${aa}/100.png`)
-    .setFooter(`Requested By : ${message.author.tag}`, message.author.avatarURL)
-    message.channel.send(ss);
-  }
-});
-
-  
-  client.on('message', message => {//roles
-    if (message.content === "k&roles") {
-        var roles = message.guild.roles.map(roles => `${roles.name}, `).join(' ')
-        const embed = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .addField('Roles:',`**[${roles}]**`)
-        message.channel.sendEmbed(embed);
-    }
-});
-client.on('message', message => {//rooms
-    if (message.content === "k&rooms") {
-        var channels = message.guild.channels.map(channels => `${channels.name}, `).join(' ')
-        const embed = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .addField('rooms:',`**[${channels}]**`)
-        message.channel.sendEmbed(embed);
-    }
-});
-
-
-  //welcome in DM
-  client.on("guildMemberAdd", member => {
-    member.createDM().then(function (channel) {
-    return channel.send(` **نورتنا ، 
-أتمنـى لك الإستمتاع ف السيـرفر ،
-** `) 
-  }).catch(console.error)
-  })
 
 
 //منع إرسال التوكن
@@ -843,93 +771,12 @@ if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return m
 
 });
 
-//رياكشن مع الايموجي
-let emojiss = require("node-emoji");//npm i node-emoji
-client.on("message", msg=>{
-if(msg.content.startsWith(`${prefix}setrole`)){
-if(!msg.member.hasPermission("ADMINISTRATOR")) return msg.reply("you don't have permission").then(s => {s.delete(1600);})
-msg.reply("منشن الروم الي تبي فيه التفعيل").then(msgs=>{
-  const filter = response => response.author.id === msg.author.id;
-  msg.channel.awaitMessages(filter, { maxMatches: 1, time: 30000, errors: ['time'] })
-  .then( collected =>{
-    msg.delete();
-    let idC = msg.guild.channels.find(c=>c.id == collected.first().mentions.channels.first().id)
-    if(!idC) return msgs.edit("لم اجد الروم");
-     idC = idC.id;
-     msgs.edit(`${msg.author}, ادخل الايموجي الذي تريدة للتفعيل`)
-const filter = response => response.author.id === msg.author.id;
-msg.channel.awaitMessages(filter, { maxMatches: 1, time: 30000, errors: ['time'] })
-.then( collected =>{
-if(!emojiss.hasEmoji(collected.first().mentions._content)) return msgs.edit("ادخل ايموجي صحيح !");
-newemoji = collected.first().mentions._content;
-msg.delete();
-msgs.edit(`${msg.author}, منشن للرتبة الذي تريدها`)
-const filter = response => response.author.id === msg.author.id;
-msg.channel.awaitMessages(filter, { maxMatches: 1, time: 30000, errors: ['time'] })
-.then( collected =>{
-let roleW = collected.first().mentions.roles.first()
-if(!roleW) {
-  let embed = new Discord.RichEmbed()
-  .setColor("#42f4f4")
-  .setTitle(`:x: - منشن الرتبة `);
-  msg.reply(embed).then( z => z.delete(3000)); return
-};
-let role = msg.guild.roles.find(`name`, roleW.name);
-if(!role) {
-  let embed = new Discord.RichEmbed()
-  .setColor("#42f4f4")
-  .setTitle(`:x: - Could't find \`${roleW.name}\` role.`);
-msg.reply(embed).then( msgs => msgs.delete(3000));
-return
-}
-roleNew = role;
-msgs.edit(`${msg.author}, ادخل النص الذي تريدة`)
-const filter = response => response.author.id === msg.author.id;
-msg.channel.awaitMessages(filter, { maxMatches: 1, time: 30000, errors: ['time'] })
-.then( collected =>{
-stringNew = collected.first().mentions._content;
-let channel = msg.guild.channels.get(idC);
-if(!channel) {
-  let embed = new Discord.RichEmbed()
-  .setColor("#42f4f4")
-  .setTitle(`:x: - Could't find \`${idC}\` Channel.`);
-msg.reply(embed).then( msgs => msgs.delete(3000));
-return
-}
-channel.bulkDelete(100)
-channel.send(`||@here @everyone||
-:arrow_down::white_check_mark::arrow_down:
- 
-${stringNew}
-`).then( msgA =>{
-msgA.react(newemoji).then(()=>{
-  const Ac = (reaction, user) => reaction.emoji.name === newemoji && !user.bot;
-  const Acc = msgA.createReactionCollector(Ac, {time: 120000});
-  Acc.on("collect", r=>{
-  let member = msg.guild.members.get(r.users.last().id);
-  if(!member) return;
-  r.remove(member.user);
-if(member.roles.find(r=>r.name == roleNew.name)) return;
-    member.addRole(roleNew);
-  channel.send(`${member.user}, تم تفعيلك`).then(z => z.delete(1500));
-})})})
-}).catch(e => {console.log(e.message)});  
-}).catch(e => {console.log(e.message)});
-}).catch(e => {console.log(e.message)});
-}).catch(e => {console.log(e.message)});
-})
-///
-}});
-
-//mentionforbot
-client.on('message', message => {
-    if (message.content.startsWith("<@565522886744604672>"))
-    
-    message.reply("**My Prefix is : __k&__**");
     
       
 
 });
+
+
 //membersstatus
 
     client.on('message', message => {
@@ -938,7 +785,7 @@ client.on('message', message => {
       var IzRo = new Discord.RichEmbed()
       .setThumbnail(message.author.avatarURL)
       .setFooter(message.author.username, message.author.avatarURL)
-      .setTitle(':tulip:| Members info')
+      .setTitle(':tulip:| حالات الأعضاء')
       .addBlankField(true)
       .addField(':green_book:| الاونلاين ',
       `${message.guild.members.filter(m=>m.presence.status == 'online').size}`)
@@ -964,14 +811,7 @@ client.on('message', (message) => {
     }
 });
  
-//قرعة من 1 إلى 100
- 
-client.on('message', message => {
-   if (message.content === "k&roll") {
-  message.channel.sendMessage(Math.floor(Math.random() * 100));
-    }
-});
- 
+
 //embed
 client.on("message", message => {
   var prefix = "k&";
@@ -994,12 +834,6 @@ message.channel.send("`Error`:" + Julian)
   
 //معلومات
 
-client.on('message',function(message) {
-   if(message.content.startsWith(prefix + "guilds")) {
-       message.channel.send(`**Guilds:__ \`\`${client.guilds.size}\`\`__**`);
-   } 
-});
-//========================================================
 client.on('message',function(message) {
    if(message.content.startsWith(prefix + "users")) {
        message.channel.send(`**Users:__ \`\`${client.users.size}\`\`__**`);
@@ -1111,44 +945,7 @@ client.on('message', message=>{
 
 
 
-//say
-client.on('message',function(message) {
-	let prefix = "k&";
-let args = message.content.split(" ").slice(1).join(" ");
-if(message.content.startsWith(prefix + "say1")) {
-if(!args) return;
-message.channel.send(`**# ${args}**`); 
-}
-});
 
-
-client.on('message',function(message) {
-	let prefix = "k&";
-let args = message.content.split(" ").slice(1).join(" ");
-if(message.content.startsWith(prefix + "say2")) {
-if(!args) return;
-message.channel.send(`_# ${args}_`); 
-}
-});
- 
- 
-client.on('message',function(message) {
-	let prefix = "k&";
-let args = message.content.split(" ").slice(1).join(" ");
-if(message.content.startsWith(prefix + "say3")) {
-if(!args) return;
-message.channel.send(`~~# ${args}~~`); 
-}
-});
-
- 
-client.on('message',function(message) {
-	let prefix = "k&";
-let args = message.content.split(" ").slice(1).join(" ");
-if(message.content.startsWith(prefix + "say4")) {
-if(!args) return;
-message.channel.send(`__# ${args}__`); 
-}
 });
 
 //سيرفر توب
@@ -1308,9 +1105,7 @@ __**الأوامـر العآآمـة :loudspeaker: **__
 ـــــــــــــــــــــــــــــــــــــــــــ
  
 **k&members |لرؤية حالات الأعضاء
- 
-k&roll | قرعة من رقم 1 إلى 100
- 
+
 k&embed | لكتابة الأمر مع الإمبد
  
 k&ping | لمعرفة بنقك و بنق البوت
@@ -1318,43 +1113,37 @@ k&ping | لمعرفة بنقك و بنق البوت
 k&bot | معلومـآت عن البوت
  
 k&server | يعطيك معلومات عن السيرفر
-
-k&say1 / 2 / 3 / 4 | لكتابة جملة بزخرفة بسـيطةـة
-
-k&skin <user> | يوريك سكن لاعب ماينكرافت
  
-k&users k&guilds k&channels | يوريك بعض المعلومات عن السيرفر
+k&users , k&channels | يوريك بعض المعلومات عن السيرفر
  
 k&avatar | للإطلاع على صورتك
  
 k&rooms | لمعرفة الرومات الموجودة
  
 k&roles | لمعرفة الرتب الموجودة
- 
-k&bans | لرؤية المبندين اللي بالسيرفر
- 
-k&id | لمعرفة بعض المعلومات عنك في السيرفر**
+
+k&id | لمعرفة بعض المعلومات عنك**
 
 ـــــــــــــــــــــــــــــــــــــــــــــــــ 
  
  __**الأوامـر الإدآآرية :hammer_pick:**__
  
 **k&bc | لأرسال برود كاست
+``
 - ططريقة إستعمال برودكاست :
 اكتب k&bc
 ثم حدد رياكشن بعدين اكتب الرسالة اللي تبيها
 بعدين اكتب yes للإرسال
 و no لعدم الإرسال
- 
+ ``
+
 k&clear | لمسح الشات (500 رسالة)
  
 k&mute |لوضع الميوت على شخص معين
  
 k&unmute |لفك الميوت
- 
-k&setrole | لأخذ رتبه بالضغط على الرياكشن
- 
-k&setvo k&offvo | لتشغيل أو تعطيل خاصية فويس أونلاين
+
+k&setvo , k&offvo | لتشغيل أو تعطيل خاصية فويس أونلاين
  
 k&ban | لتبنيد شخص معين
  
