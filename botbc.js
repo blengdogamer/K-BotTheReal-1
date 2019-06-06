@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require("fs");
-var prefix = "k&"
+var prefix = ","
 var adminprefix = 'kx&'
 
 client.on('ready',  () => {
@@ -39,7 +39,7 @@ client.on('guildCreate', guild => {
 
 //ticket
 client.on("message", (message) => {
-   if (message.content.startsWith("k&new")) {     
+   if (message.content.startsWith(",new")) {     
         const reason = message.content.split(" ").slice(1).join(" ");     
         if (!message.guild.roles.exists("name", "Support Team")) return message.channel.send(`This server doesn't have a \`Support Team\` role made, so the ticket won't be opened.\nIf you are an administrator, make one with that name exactly and give it to users that should be able to see tickets.`);
         if (message.guild.channels.exists("name", "ticket-{message.author.id}" + message.author.id)) return message.channel.send(`You already have a ticket open.`);    
@@ -70,7 +70,7 @@ client.on("message", (message) => {
     }
  
  
-  if (message.content.startsWith("k&close")) {
+  if (message.content.startsWith(",close")) {
         if (!message.channel.name.startsWith(`ticket-`)) return message.channel.send(`You can't use the close command outside of a ticket channel.`);
  
         message.channel.send(`هل أنت متأكد؟ بعد التأكيد ، لا يمكنك عكس هذا الإجراء!\n للتأكيد ، اكتب\`k&close\`. سيؤدي ذلك إلى مهلة زمنية في غضون 10 ثوانٍ وإلغائها`)
@@ -189,8 +189,8 @@ client.on('message', message => {
     if(message.content.startsWith(prefix + "setvo")) {
 let channel = message.content.split(" ").slice(1).join(" ")
 let channelfind = message.guild.channels.find('name', `${channel}`)
-if(!channel) return message.channel.send('المرجو كتابة إسم الروم الصوتي بدون أخطاء مثل: k&setvo <Channel name>')
-if(!channelfind) return message.channel.send('المرجو كتابة إسم الروم الصوتي بدون أخطاء مثل : k&setvo <Channel name>')
+if(!channel) return message.channel.send('المرجو كتابة إسم الروم الصوتي بدون أخطاء مثل: ,setvo <Channel name>')
+if(!channelfind) return message.channel.send('المرجو كتابة إسم الروم الصوتي بدون أخطاء مثل : ,setvo <Channel name>')
 vojson[message.guild.id] = {
 stats: 'enable',
 chid: channelfind.id,
@@ -270,7 +270,7 @@ if (message.content.startsWith(prefix + 'clear')) {
 	
 client.on('message', async message =>{
   if (message.author.boss) return;
-	var prefix = "k&";
+	var prefix = ",";
 
 if (!message.content.startsWith(prefix)) return;
 	let command = message.content.split(" ")[0];
@@ -336,7 +336,7 @@ if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return m
 
     client.on('message', message => {
               if (!message.channel.guild) return;
-      if(message.content =='k&members')
+      if(message.content ==',members')
       var IzRo = new Discord.RichEmbed()
       .setThumbnail(message.author.avatarURL)
       .setFooter(message.author.username, message.author.avatarURL)
@@ -355,7 +355,7 @@ if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return m
 
  
 client.on('message', (message) => {
-    if (message.content.startsWith('k&ban ')) {
+    if (message.content.startsWith(',ban ')) {
       if(!message.member.hasPermission('BAN_MEMBERS')) return message.reply('هذا الخاصية للإدارة فقط');
         var member= message.mentions.members.first();
         member.ban().then((member) => {
@@ -422,7 +422,7 @@ client.on('message', message => {
 /*معلونات البوت*/
 
 client.on('message', message => {
-    if (message.content.startsWith("k&bot")) {
+    if (message.content.startsWith(",bot")) {
     message.channel.send({
         embed: new Discord.RichEmbed()
             .setAuthor(client.user.username,client.user.avatarURL)
@@ -519,7 +519,7 @@ client.on('message', message => {
 
 client.on('message', message => {
 
-    if (message.content === "k&mutech") {
+    if (message.content === ",mutech") {
                         if(!message.channel.guild) return message.reply(' هذا الأمر  متاح فقط في السيرفرات');
 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ليس لديك صلاحيات');
@@ -530,7 +530,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' لي
                message.reply("تم تقفيل الشات :white_check_mark: ")
            });
              }
-if (message.content === "k&unmutech") {
+if (message.content === ",unmutech") {
     if(!message.channel.guild) return message.reply('هذا الأمر  متاح فقط في السيرفرات');
 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('ليس لديك صلاحيات');
@@ -550,7 +550,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('لي�
  //انفايت البوت 
 
 client.on('message', message => {
-        if (message.content === "k&invite") {
+        if (message.content === ",invite") {
             if(!message.channel.guild) return;
         let embed = new Discord.RichEmbed()
         .setAuthor(` ${message.author.username} `, message.author.avatarURL)      
@@ -562,7 +562,7 @@ client.on('message', message => {
    });
    
    client.on('message', message => {
-        if (message.content === "k&inv") {
+        if (message.content === ",inv") {
             if(!message.channel.guild) return;
         let embed = new Discord.RichEmbed()
         .setAuthor(` ${message.author.username} `, message.author.avatarURL)      
@@ -610,7 +610,7 @@ Server MemberCount : **${gmemb} **
   
 client.on('message', message => {
     var  user = message.mentions.users.first() || message.author;
-if (message.content.startsWith("k&avatar")) {
+if (message.content.startsWith(",avatar")) {
 message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
 }
 });
@@ -631,14 +631,14 @@ m.sendMessage(args)
 //help
 
   client.on('message', msg => {
-    if(msg.content === 'k&help')
+    if(msg.content === ',help')
     msg.reply('شـيكـ علىُ الخآآآصــ:white_check_mark:')
   });
   
   //help prv
   
 client.on('message', message => {
-    if (message.content.startsWith("k&help")) {
+    if (message.content.startsWith(",help")) {
  
 message.author.send(`
  
@@ -658,52 +658,52 @@ __**الأوامـر العآآمـة :loudspeaker: **__
  
 ـــــــــــــــــــــــــــــــــــــــــــ
  
-**k&members |لرؤية حالات الأعضاء
+**,members |لرؤية حالات الأعضاء
 
-k&embed | لكتابة الأمر مع الإمبد
+,embed | لكتابة الأمر مع الإمبد
  
-k&ping | لمعرفة بنقك و بنق البوت
+,ping | لمعرفة بنقك و بنق البوت
  
-k&bot | معلومـآت عن البوت
+,bot | معلومـآت عن البوت
  
-k&server | يعطيك معلومات عن السيرفر
+,server | يعطيك معلومات عن السيرفر
  
-k&users , k&channels | يوريك بعض المعلومات عن السيرفر
+,users \ ,channels | يوريك بعض المعلومات عن السيرفر
  
-k&avatar | للإطلاع على صورتك
+,avatar | للإطلاع على صورتك
  
-k&rooms | لمعرفة الرومات الموجودة
+,rooms | لمعرفة الرومات الموجودة
  
-k&roles | لمعرفة الرتب الموجودة
+,roles | لمعرفة الرتب الموجودة
 
-k&id | لمعرفة بعض المعلومات عنك**
+,id | لمعرفة بعض المعلومات عنك**
 
 ـــــــــــــــــــــــــــــــــــــــــــــــــ 
  
  __**الأوامـر الإدآآرية :hammer_pick:**__
  
 **
-k&clear | لمسح الشات (500 رسالة)
+,clear | لمسح الشات (500 رسالة)
  
-k&mute |لوضع الميوت على شخص معين
+,mute |لوضع الميوت على شخص معين
  
-k&unmute |لفك الميوت
+,unmute |لفك الميوت
 
-k&setvo , k&offvo | لتشغيل أو تعطيل خاصية فويس أونلاين
+,setvo , ,offvo | لتشغيل أو تعطيل خاصية فويس أونلاين
  
-k&ban | لتبنيد شخص معين
+,ban | لتبنيد شخص معين
  
-k&color 100 | لإنشاء 100 لون
+,color 100 | لإنشاء 100 لون
  
-k&mutech | لقفل الشات
+,mutech | لقفل الشات
  
-k&unmutech | لفتح الشات
+,unmutech | لفتح الشات
  
  
 ـــــــــــــــــــــــــــــــــــــــــــــــــ
 
  
-k&invite / k&inv | لدعوة البوت :envelope_with_arrow:
+,invite / ,inv | لدعوة البوت :envelope_with_arrow:
 
  
 ــــــــــــــــــــــــــــــــــــــــــــــــــ
