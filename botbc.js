@@ -181,450 +181,6 @@ client.on('message', message => {
 });
 
 
-//bcmtawr
-
-client.on('message', message => {
-if(message.author.bot) return;
-if(message.channel.type === 'dm') return;
-    if(message.content.startsWith(prefix + 'bc')) {
-     let filter = m => m.author.id === message.author.id;
- 
- let recembed = new Discord.RichEmbed()
- .setTitle(`${client.user.username}`)
- .setDescription(`
- -=-=-=-=-=-=-=-=-=-=
- 🎖 برودكاست إلى رتبة محدد بدون إمبد
- 
- 🏅 برودكاست إلى رتبة محدد بالإمبد
- 
- 📭 برودكاست إلى جميع الأعضاء بالإمبد
- 
- 📧 برودكاست إلى جميع الأعضاء بدون إمبد
- 
- 🔵 برودكاست إلى الأونلاين بدون إمبد
- 
- 🔷 برودكاست إلى الأنلاين بالإمبد
- 
- ❌ To Cancel the process
- -=-=-=-=-=-=-=-=-=-=
- `)
- 
- message.channel.sendEmbed(recembed).then(msg => {
-     msg.react('🎖')
-     .then(() => msg.react('🏅'))
-     .then(() => msg.react('📭'))
-     .then(() =>  msg.react('📧'))
-     .then(() => msg.react('🔵'))
-     .then(() => msg.react('🔷'))
-     .then(() => msg.react('❌'))
- 
- 
-             let embedmsgFilter = (reaction, user) => reaction.emoji.name === '📭' && user.id === message.author.id;
- 
-             let normalmsgFilter = (reaction, user) => reaction.emoji.name === '📧' && user.id === message.author.id;
- 
-             let cancelFilter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
- 
-             let onlyroleFilter = (reaction, user) => reaction.emoji.name === '🎖' && user.id === message.author.id;8
- 
-             let onlineonlyFilter = (reaction, user) => reaction.emoji.name === '🔵' && user.id === message.author.id;8
- 
-             let embedonlineonlyFilter = (reaction, user) => reaction.emoji.name === '🔷' && user.id === message.author.id;8
- 
-             let embedonlyroleFilter = (reaction, user) => reaction.emoji.name === '🏅' && user.id === message.author.id;8
- 
-             let embedmsg = msg.createReactionCollector(embedmsgFilter, { time: 0 });
- 
-             let normalmsg = msg.createReactionCollector(normalmsgFilter, { time: 0 });
-     
-             let onlyrole = msg.createReactionCollector(onlyroleFilter, { time: 0 });
- 
-             let embedonlyrole = msg.createReactionCollector(embedonlyroleFilter, { time: 0 });
- 
-             let onlineonly = msg.createReactionCollector(onlineonlyFilter, { time: 0 });
-                 
-             let embedonlineonly = msg.createReactionCollector(embedonlineonlyFilter, { time: 0 });
- 
-             let cancel = msg.createReactionCollector(cancelFilter, { time: 0 });
- 
- embedonlineonly.on('collect', r => {
- 
-    let msge;
-    message.channel.send(':pencil: **| قم بكتابة نص الرسالة رجاءً :pencil2: **').then(msg => {
-   
-           message.channel.awaitMessages(filter, {
-             max: 1,
-             time: 90000,
-             errors: ['time']
-           })
-           .then(collected => {
-               collected.first().delete();
-               msge = collected.first().content;
-               msg.edit('✅ **| هل أنت متأكد من إرسال هذه الرساله ؟ [yes OR no] **').then(msg => {
-                 message.channel.awaitMessages(filter, {
-                   max: 1,
-                   time: 90000,
-                   errors: ['time']
-                 })
-                 .then(collected => {
-                   if(collected.first().content === 'yes') {
-   message.channel.send(`**:white_check_mark: تم إرسال رسآلتك بنجاح :loudspeaker:**`);
-   
-   
-   message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
-    var bc = new Discord.RichEmbed()
-           .setColor('RANDOM')
-           .setTitle(`:mega: New Broadcast`)
-           .addField('🔰Server🔰', message.guild.name)
-           .addField('🚩Sender🚩', message.author.username)
-           .addField('📜Message📜', `${msge}`)
-           .setThumbnail('https://a.top4top.net/p_1008gqyyd1.png')
-           .setFooter(client.user.username, client.user.avatarURL);
-           m.send({ embed: bc })
-           m.send(`${m}`)
-           
-       })
-   }})
-   if(collected.first().content === 'no') {
-   message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجآح :loudspeaker:**`);
-   message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
-    var bc = new Discord.RichEmbed()
-           .setColor('RANDOM')
-           .setTitle(`:mega: New Broadcast`)
-           .addField('🔰Server🔰', message.guild.name)
-           .addField('🚩Sender🚩', message.author.username)
-           .addField('📜Message📜', `${msge}`)
-           .setThumbnail('https://a.top4top.net/p_1008gqyyd1.png')
-           .setFooter(client.user.username, client.user.avatarURL);
-           m.send({ embed: bc })
-           
-       })
-   }
-                 
-   })
-               })
-           })
-       })
- 
-       
- onlineonly.on('collect', r => {
-    let msge;
-    message.channel.send(':pencil: **| قم بكتابة نص الرسالة رجاءً :pencil2: **').then(msg => {
- 
-        message.channel.awaitMessages(filter, {
-          max: 1,
-          time: 90000,
-          errors: ['time']
-        })
-        .then(collected => {
-            collected.first().delete();
-            msge = collected.first().content;
-            msg.edit('✅ **| هل أنت متأكد من إرالة البرودكاست؟ [yes OR no] **').then(msg => {
-              message.channel.awaitMessages(filter, {
-                max: 1,
-                time: 90000,
-                errors: ['time']
-              })
-              .then(collected => {
- 
-                if(collected.first().content === 'yes') {
-message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
-               
- 
-message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
-    m.send(`${msge}`)
-m.send(`${m}`)      
-       
-    })
-}
-if(collected.first().content === 'no') {
-message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
-message.guild.members.filter(m => m.presence.status === 'online').forEach(m => {
-    m.send(`${msge}`)
-               
-    })}
-})
-})
-        })
-    })
-})
- 
- embedmsg.on('collect', r => {
-     let msge;
-  message.channel.send(':pencil: **| قم بكتابة نص االرسالة رجاءً :pencil2: **').then(msg => {
- 
-         message.channel.awaitMessages(filter, {
-           max: 1,
-           time: 90000,
-           errors: ['time']
-         })
-         .then(collected => {
-             collected.first().delete();
-             msge = collected.first().content;
-             msg.edit('✅ **| هل انت متأكد من إرسآل الرسالة ؟ [yes OR no] **').then(msg => {
-               message.channel.awaitMessages(filter, {
-                 max: 1,
-                 time: 90000,
-                 errors: ['time']
-               })
-               .then(collected => {
-                 if(collected.first().content === 'yes') {
- message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
- 
- 
-     message.guild.members.forEach(m => {
-         var bc = new Discord.RichEmbed()
-         .setColor('RANDOM')
-         .setTitle(`:mega: New Broadcast`)
-         .addField('🔰Server🔰', message.guild.name)
-         .addField('🚩Sender🚩', message.author.username)
-         .addField('📜Message📜', `${msge}`)
-         .setThumbnail('https://a.top4top.net/p_1008gqyyd1.png')
-         .setFooter(client.user.username, client.user.avatarURL);
-         m.send({ embed: bc })
-         m.send(`${m}`)
-         
-     })
- }})
- if(collected.first().content === 'no') {
- message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
-     message.guild.members.forEach(m => {
-         var bc = new Discord.RichEmbed()
-         .setColor('RANDOM')
-         .setTitle(`:mega: New Broadcast`)
-         .addField('🔰Server🔰', message.guild.name)
-         .addField('🚩Sender🚩', message.author.username)
-         .addField('📜Message📜', `${msge}`)
-         .setThumbnail('https://a.top4top.net/p_1008gqyyd1.png')
-         .setFooter(client.user.username, client.user.avatarURL);
-         m.send({ embed: bc })
-         
-     })
- }
-               
- })
-             })
-         })
-     })
- 
- 
-   
- 
- 
- 
- normalmsg.on('collect', r => {
-     let msge;
-     message.channel.send(':pencil: **| قم بكتابة نص الرسالة رجاءً :pencil2: **').then(msg => {
- 
-         message.channel.awaitMessages(filter, {
-           max: 1,
-           time: 90000,
-           errors: ['time']
-         })
-         .then(collected => {
-             collected.first().delete();
-             msge = collected.first().content;
-             msg.edit('✅ **| هل أنت متأكد من إرسال الرسالة؟  [yes OR no] **').then(msg => {
-               message.channel.awaitMessages(filter, {
-                 max: 1,
-                 time: 90000,
-                 errors: ['time']
-               })
-               .then(collected => {
- 
-                 if(collected.first().content === 'yes') {
- message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
-                 
- 
-     message.guild.members.forEach(m => {
- m.send(`${msge}`)
- m.send(`${m}`)      
-         
-     })
- }
- if(collected.first().content === 'no') {
- message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
-     message.guild.members.forEach(m => {
-         m.send(`${msge}`)
-                 
-     })}
- })
- })
-         })
-     })
- })
- 
- onlyrole.on('collect', r => {
-     let msge;
-     let role;
-     message.channel.send(':pencil: **| قم بكتابة نص الرسالة رجاءً :pencil2: **').then(msg => {
- 
-         message.channel.awaitMessages(filter, {
-           max: 1,
-           time: 90000,
-           errors: ['time']
-         })
- 
-         .then(collected => {
-             collected.first().delete();
-             msge = collected.first().content;
-                 msg.edit('✅ **| قم بمنشنة الرتبة**').then(msg => {
-                 message.channel.awaitMessages(filter, {
-                     max: 1,
-                     time: 90000,
-                     errors: ['time']
-                   })
-         
-         .then(collected => {
-             collected.first().delete();
-             role = collected.first().content;
-                 let rolecheak = message.guild.roles.find('name', `${role}`)
-             msg.edit('✅ **| هل أنت متأكد من إرسالة الرسالة ؟ [yes OR no] **').then(msg => {
-               message.channel.awaitMessages(filter, {
-                 max: 1,
-                 time: 90000,
-                 errors: ['time']
-               })
-               .then(collected => {
- 
-                 if(collected.first().content === 'yes') {
- message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
-                 
- 
-             message.guild.members.filter(m => m.roles.get(rolecheak.id)).forEach(m => {
- 
- m.send(`${msge}`)
- m.send(`${m}`)      
-         
-     })
- }
- if(collected.first().content === 'no') {
- message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
-         message.guild.members.filter(m => m.roles.get(rolecheak.id)).forEach(m => {
- 
-         m.send(`${msge}`)
-                 
-     })}
- })
- })
-         })
-     })
- })
- })
- });
- 
- 
- 
- embedonlyrole.on('collect', r => {
-     let msge;
-     let role;
-     message.channel.send(':pencil: **| قم بكتابة نص الرسالة رجاءً :pencil2: **').then(msg => {
- 
-         message.channel.awaitMessages(filter, {
-           max: 1,
-           time: 90000,
-           errors: ['time']
-         })
- 
-         .then(collected => {
-             collected.first().delete();
-             msge = collected.first().content;
-                 msg.edit('✅ **| قم بمنشنة الرتبة**').then(msg => {
-                 message.channel.awaitMessages(filter, {
-                     max: 1,
-                     time: 90000,
-                     errors: ['time']
-                   })
-         
-         .then(collected => {
-             collected.first().delete();
-             role = collected.first().content;
-                 let rolecheak = message.guild.roles.find('name', `${role}`)
-             msg.edit('✅ **| هل أنت متأكد من إرسال الرسآلة ؟ [yes OR no] **').then(msg => {
-               message.channel.awaitMessages(filter, {
-                 max: 1,
-                 time: 90000,
-                 errors: ['time']
-               })
-               .then(collected => {
- 
-                 if(collected.first().content === 'yes') {
- message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
-                 
- 
-                     message.guild.members.filter(m => m.roles.get(rolecheak.id)).forEach(m => {
-                         var bc = new Discord.RichEmbed()
-         .setColor('RANDOM')
-         .setTitle(`:mega: New Broadcast`)
-         .addField('🔰Server🔰', message.guild.name)
-         .addField('🚩Sender🚩', message.author.username)
-         .addField('📜Message📜', `${msge}`)
-         .setThumbnail('https://a.top4top.net/p_1008gqyyd1.png')
-         .setFooter(client.user.username, client.user.avatarURL);
-         m.send({ embed: bc })
- m.send(`${m}`)      
-         
-     })
- }
- if(collected.first().content === 'no') {
- message.channel.send(`**:white_check_mark: تم إرسال رسالتك بنجاح :loudspeaker:**`);
- message.guild.members.filter(m => m.roles.get(rolecheak.id)).forEach(m => {
-         var bc = new Discord.RichEmbed()
-         .setColor('RANDOM')
-         .setTitle(`:mega: New Broadcast`)
-         .addField('🔰Server🔰', message.guild.name)
-         .addField('🚩Sender🚩', message.author.username)
-         .addField('📜Message📜', `${msge}`)
-         .setThumbnail('https://a.top4top.net/p_1008gqyyd1.png')
-         .setFooter(client.user.username, client.user.avatarURL);
-         m.send({ embed: bc })
-         
-                 
-     })}
- })
- })
-         })
-     })
- })
- })
- })
-     cancel.on('collect', r => {
-         let cancelembed = new Discord.RichEmbed()
-         .setTitle('تـم الإلغآء :x:')
-      message.channel.sendEmbed(cancelembed)
-         embedmsg.stop();
-         normalmsg.stop();
-         onlyrole.stop();
-         embedonlyrole.stop();
-         embedonlineonly.stop()
-         onlineonly.stop()
-         cancel.stop();
-     })
- })
-    }});
-
-
-//id
-
- client.on("message", msg => {
-           var prefix = "k&";
-  if(msg.content.startsWith (prefix + "id")) {
-    if(!msg.channel.guild) return msg.reply('**:x: اسف لكن هذا الامر للسيرفرات فقط **');         
-      const embed = new Discord.RichEmbed();
-  embed.addField(":cloud_tornado:  الاسم", `**[ ${msg.author.username}#${msg.author.discriminator} ]**`, true)
-          .addField(":id:  الايدي", `**[ ${msg.author.id} ]**`, true)
-          .setColor("RANDOM")
-          .setFooter(msg.author.username , msg.author.avatarURL)
-          .setThumbnail(`${msg.author.avatarURL}`)
-          .setTimestamp()
-          .setURL(`${msg.author.avatarURL}`)
-          .addField(':spy:  الحالة', `**[ ${msg.author.presence.status.toUpperCase()} ]**`, true)
-          .addField(':satellite_orbital:   يلعب', `**[ ${msg.author.presence.game === null ? "No Game" : msg.author.presence.game.name} ]**`, true)
-          .addField(':military_medal:  الرتب', `**[ ${msg.member.roles.filter(r => r.name).size} ]**`, true)
-          .addField(':robot:  هل هو بوت', `**[ ${msg.author.bot.toString().toUpperCase()} ]**`, true);
-      msg.channel.send({embed: embed})
-  }
-});
 
 //voice-online
 
@@ -1128,15 +684,7 @@ k&id | لمعرفة بعض المعلومات عنك**
  
  __**الأوامـر الإدآآرية :hammer_pick:**__
  
-**k&bc | لأرسال برود كاست
-``
-- ططريقة إستعمال برودكاست :
-اكتب k&bc
-ثم حدد رياكشن بعدين اكتب الرسالة اللي تبيها
-بعدين اكتب yes للإرسال
-و no لعدم الإرسال
- ``
-
+**
 k&clear | لمسح الشات (500 رسالة)
  
 k&mute |لوضع الميوت على شخص معين
